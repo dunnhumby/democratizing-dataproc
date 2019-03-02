@@ -1,19 +1,27 @@
-init:
+.PHONY: init check-gcp-project-guard
+
+init: check-gcp-project-guard
 	terraform init \
-	    -var project=democratising-dataproc \
+	    -var project=${GCP_PROJECT} \
 	    -reconfigure \
 	    -get=true \
 	    -get-plugins=true \
 	    -upgrade=true \
 	    -verify-plugins=true \
-	    -backend-config=bucket="democratising-dataproc-tf-state" \
-	    -backend-config=prefix=democratising-dataproc
+	    -backend-config=bucket="${GCP_PROJECT}-tf-state" \
+	    -backend-config=prefix=${GCP_PROJECT}
 
-apply:
+apply: check-gcp-project-guard
 	terraform apply \
-	    -var project=democratising-dataproc \
+	    -var project=${GCP_PROJECT} \
 	    -auto-approve
-destroy:
+
+destroy: check-gcp-project-guard
 	terraform destroy \
-	    -var project=democratising-dataproc \
+	    -var project=${GCP_PROJECT} \
 	    -auto-approve
+
+check-gcp-project-guard:
+ifndef GCP_PROJECT
+	$(error GCP_PROJECT is undefined)
+endif
