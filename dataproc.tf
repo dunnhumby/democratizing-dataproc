@@ -1,16 +1,27 @@
 resource "google_dataproc_cluster" "cluster1" {
-  name    = "${var.project}-cluster1"
-  region  = "${var.region}"
-  project = "${var.project}"
+  name       = "${var.project}-cluster1"
+  region     = "${var.region}"
+  project    = "${var.project}"
+  depends_on = ["google_sql_user.sql_user"]
 
   cluster_config {
     gce_cluster_config {
-      zone            = "${var.zone}"
-      tags            = ["sql-egress", "${google_compute_network.democratising-dataproc-network.name}-allow-internal"]
-      subnetwork      = "${google_compute_subnetwork.democratising-dataproc-subnet.name}"
-      service_account = "${google_service_account.service_account.email}"
+      zone       = "${var.zone}"
+      tags            = ["sql-egress", "${google_compute_network.network.name}-allow-internal"]
+      subnetwork = "${google_compute_subnetwork.subnet.name}"
+
       metadata = {
-          hive-metastore-instance = "${google_sql_database_instance.hive_metastore_instance.connection_name}"
+        hive-metastore-instance = "${google_sql_database_instance.hive_metastore_instance.connection_name}"
+      }
+
+      service_account_scopes = ["cloud-platform"]
+    }
+
+    software_config {
+      image_version = "1.3"
+
+      override_properties = {
+        "hive:hive.metastore.warehouse.dir" = "gs://${google_storage_bucket.warehouse.name}/datasets"
       }
     }
 
@@ -25,6 +36,7 @@ resource "google_dataproc_cluster" "cluster1" {
 resource "google_dataproc_job" "cluster1_sparkpi" {
   region       = "${google_dataproc_cluster.cluster1.region}"
   force_delete = true
+  depends_on   = ["google_dataproc_cluster.cluster1"]
 
   placement {
     cluster_name = "${google_dataproc_cluster.cluster1.name}"
@@ -51,6 +63,7 @@ resource "google_dataproc_job" "cluster1_sparkpi" {
 resource "google_dataproc_job" "cluster1_pyspark" {
   region       = "${google_dataproc_cluster.cluster1.region}"
   force_delete = true
+  depends_on   = ["google_dataproc_cluster.cluster1"]
 
   placement {
     cluster_name = "${google_dataproc_cluster.cluster1.name}"
