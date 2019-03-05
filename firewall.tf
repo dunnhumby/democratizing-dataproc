@@ -1,6 +1,6 @@
 resource "google_compute_firewall" "hivemetastore_allow_sql_access" {
   name        = "allow-cloudsqlproxy-access"
-  network     = "${google_compute_network.democratising-dataproc-network.self_link}"
+  network     = "${google_compute_network.network.self_link}"
   priority    = "800"
   direction   = "EGRESS"
   description = "Allow outbound access for cloud sql proxy to the hive metastore instance"
@@ -15,8 +15,8 @@ resource "google_compute_firewall" "hivemetastore_allow_sql_access" {
 }
 
 resource "google_compute_firewall" "dataproc_firewall" {
-  name        = "${google_compute_network.democratising-dataproc-network.name}-allow-internal"
-  network     = "${google_compute_network.democratising-dataproc-network.self_link}"
+  name        = "${google_compute_network.network.name}-allow-internal"
+  network     = "${google_compute_network.network.self_link}"
   description = "Firewall rule for dataproc"
 
   priority = "800"
@@ -35,5 +35,5 @@ resource "google_compute_firewall" "dataproc_firewall" {
     protocol = "icmp"
   }
 
-  target_tags = ["${google_compute_network.democratising-dataproc-network.name}-allow-internal"]
+  target_tags = ["${google_compute_network.network.name}-allow-internal"]
 }
