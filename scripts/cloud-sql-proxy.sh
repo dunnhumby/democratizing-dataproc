@@ -23,10 +23,10 @@ set -euo pipefail
 # Whether to configure the Hive metastore to point to a Cloud SQL database.
 # This is not required for Hive & Spark I/O.
 
-HIVE_USER_DEFAULT='mosoq'
-HIVE_PASSWORD_DEFAULT='mosoq'
+HIVE_USER_DEFAULT='hive'
+HIVE_PASSWORD_DEFAULT='hive'
 SQL_USER_DEFAULT='root'
-SQL_PASSWORD_DEFAULT='mosoq'
+SQL_PASSWORD_DEFAULT='changeme'
 
 readonly enable_cloud_sql_metastore="$(/usr/share/google/get_metadata_value attributes/enable-cloud-sql-hive-metastore || echo 'true')"
 
