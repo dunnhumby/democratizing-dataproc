@@ -18,11 +18,13 @@ resource "google_sql_database_instance" "hive_metastore_instance" {
   }
 }
 
+//Create a user because terraform deletes the default root user that comes with the mysql instance
 resource "google_sql_user" "sql_user" {
-  name     = "${var.sql_user}"
+  name     = "root"
   instance = "${google_sql_database_instance.hive_metastore_instance.name}"
   project  = "${var.project}"
-  password = "${var.sql_password}"
+  password = "changeme"
+  host     = "%"
 
   lifecycle {
     ignore_changes = [
