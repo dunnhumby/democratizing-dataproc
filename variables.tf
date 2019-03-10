@@ -17,16 +17,6 @@ variable "zone" {
   default = "europe-west1-d"
 }
 
-variable "sql_user" {
-  type    = "string"
-  default = "root"
-}
-
-variable "sql_password" {
-  type    = "string"
-  default = "pwd"    //not sensible to provide a default but as this is for demo purposes we'll leave it in
-}
-
 variable "location" {
   type    = "string"
   default = "EU"
@@ -35,9 +25,4 @@ variable "location" {
 variable "storage_class" {
   type    = "string"
   default = "MULTI_REGIONAL"
-}
-
-variable "service_account_name" {
-  type    = "string"
-  default = "svcacnt"
 }
