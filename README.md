@@ -26,7 +26,7 @@ make destroy
 
 --- 
 
-To generate the a graph displaying all the resources in this terraform project run
+To generate a graph displaying all the resources in this terraform project run
 
 ```bash
 docker build -t graphwiz . &&
