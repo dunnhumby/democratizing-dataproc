@@ -9,6 +9,23 @@ by issuing `gcloud services enable dataproc.googleapis.com sqladmin.googleapis.c
 
 --- 
 
+The project can be deployed by issuing
+
+```bash
+gcloud init #choose the project that you will be deploying to
+gcloud services enable dataproc.googleapis.com sqladmin.googleapis.com
+gsutil mb gs://${GCP_PROJECT}-tf-state #terraform state bucket used as the back-end for the Google provider
+export GCP_PROJECT=$(gcloud config get-value project)
+make init apply
+```
+
+and destroy using
+```bash
+make destroy
+```
+
+--- 
+
 To generate the a graph displaying all the resources in this terraform project run
 
 ```bash

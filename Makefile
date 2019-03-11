@@ -1,4 +1,4 @@
-.PHONY: init check-gcp-project-guard
+.PHONY: init apply destroy check-gcp-project-guard
 
 init: check-gcp-project-guard
 	terraform init \
