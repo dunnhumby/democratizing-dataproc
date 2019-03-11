@@ -16,3 +16,7 @@ docker build -t graphwiz . &&
    terraform graph -type=plan > graph.dot &&
    docker run -v $(PWD):/tmp graphwiz dot /tmp/graph.dot -Tpng -o /tmp/graph.png
 ```
+
+Here is the latest committed state of that graph:
+
+![](graph.png)
