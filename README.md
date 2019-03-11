@@ -14,7 +14,8 @@ To generate the a graph displaying all the resources in this terraform project r
 ```bash
 docker build -t graphwiz . &&
    terraform graph -type=plan > graph.dot &&
-   docker run -v $(PWD):/tmp graphwiz dot /tmp/graph.dot -Tpng -o /tmp/graph.png
+   docker run -v $(PWD):/tmp graphwiz dot /tmp/graph.dot -Tpng -o /tmp/graph.png &&
+   rm graph.dot
 ```
 
 Here is the latest committed state of that graph:
