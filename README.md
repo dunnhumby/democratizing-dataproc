@@ -9,7 +9,7 @@ by issuing `gcloud services enable dataproc.googleapis.com sqladmin.googleapis.c
 
 --- 
 
-To generate the a graph displaying all the resources in this teraform project run
+To generate the a graph displaying all the resources in this terraform project run
 
 ```bash
 docker build -t graphwiz . &&
