@@ -7,3 +7,12 @@ Ensure you have enabled the relevant APIs:
 by issuing `gcloud services enable dataproc.googleapis.com sqladmin.googleapis.com`
 
 
+--- 
+
+To generate the a graph displaying all the resources in this teraform project run
+
+```bash
+docker build -t graphwiz . &&
+   terraform graph -type=plan > graph.dot &&
+   docker run -v $(PWD):/tmp graphwiz dot /tmp/graph.dot -Tpng -o /tmp/graph.png
+```
