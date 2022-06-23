@@ -14,6 +14,7 @@ The project can be deployed by issuing
 ```bash
 gcloud init #choose the project that you will be deploying to
 gcloud services enable dataproc.googleapis.com sqladmin.googleapis.com
+echo $(gcloud config get-value project)
 export GCP_PROJECT=$(gcloud config get-value project)
 gsutil mb gs://${GCP_PROJECT}-tf-state #terraform state bucket used as the back-end for the Google provider
 make init apply
