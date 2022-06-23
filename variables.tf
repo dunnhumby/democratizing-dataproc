@@ -1,9 +1,9 @@
 variable "project" {
-  type = "string"
+  type = string
 }
 
 variable "region" {
-  type    = "string"
+  type    = string
   default = "europe-west1"
 }
 
@@ -13,16 +13,16 @@ variable "database_version" {
 }
 
 variable "zone" {
-  type    = "string"
+  type    = string
   default = "europe-west1-d"
 }
 
 variable "location" {
-  type    = "string"
+  type    = string
   default = "EU"
 }
 
 variable "storage_class" {
-  type    = "string"
+  type    = string
   default = "MULTI_REGIONAL"
 }
