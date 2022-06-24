@@ -1,15 +1,15 @@
-terraform {
-  required_version = ">=1.2.0"
+# terraform {
+#   required_version = ">=1.2.0"
 
-  backend "gcs" {}
-}
+#   backend "gcs" {}
+# }
 
-provider "google" {
+# provider "google" {
   
-  project = "${var.project}"
-  region  = "${var.region}"
-}
+#   project = "${var.project}"
+#   region  = "${var.region}"
+# }
 
-provider "template" {
-  version = "2.2.0"
-}
+# provider "template" {
+#   version = "2.2.0"
+# }
