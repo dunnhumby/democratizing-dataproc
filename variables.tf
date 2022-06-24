@@ -5,6 +5,7 @@ variable "project" {
 variable "region" {
   type    = string
   default = "europe-west1"
+  
 }
 
 variable "database_version" {
@@ -25,4 +26,11 @@ variable "location" {
 variable "storage_class" {
   type    = string
   default = "MULTI_REGIONAL"
+}
+
+variable "apis_to_activate" {
+  description = "apis that will be enabled"
+  type        = list(string)
+  default     = ["dataproc.googleapis.com",
+  "sqladmin.googleapis.com"]
 }
