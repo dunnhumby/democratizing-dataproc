@@ -7,8 +7,8 @@ resource "google_dataproc_cluster" "cluster2" {
   cluster_config {
     gce_cluster_config {
       zone       = "${var.zone}"
-      tags            = ["sql-egress", "${google_compute_network.network.name}-allow-internal"]
-      subnetwork = "${google_compute_subnetwork.subnet.name}"
+#       tags            = ["sql-egress", "${google_compute_network.network.name}-allow-internal"]
+#       subnetwork = "${google_compute_subnetwork.subnet.name}"
 
       metadata = {
         hive-metastore-instance = "${google_sql_database_instance.hive_metastore_instance.connection_name}"
